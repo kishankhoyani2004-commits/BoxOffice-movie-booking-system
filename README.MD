@@ -1,58 +1,274 @@
-# BoxOffice (Django Movie ticket booking system)
-
-The main objective of the Project on BoxOffice Online Movie Ticket Booking System is to manage the details of
-Movie, Tickets, Booking, Show Timing, Customer. It manages all the information about Movie, Audi,
-Customer, Movie. The project is totally built at administrative end and thus only the administrator is
-guaranteed the access. The purpose of the project is to build an application program to reduce the manual
-work for managing the Movie, Tickets, Audi, Booking. It tracks all the details about the Booking, Show
-Timing, Customer.
-
-## Screenshots 
-![alt text](https://user-images.githubusercontent.com/23280462/78024964-dbd92e00-7376-11ea-9dea-fe8c6ccee058.jpg)
-![alt text](https://user-images.githubusercontent.com/23280462/78024974-de3b8800-7376-11ea-9231-ed3ff707eb68.png)
-![alt text](https://user-images.githubusercontent.com/23280462/78024970-dd0a5b00-7376-11ea-9f7b-29735c7a0e91.png)
+# 🎬 BoxOffice - Movie Booking System
 
 
 
-## Live Demo
-[https://boxofficeonline.herokuapp.com](https://boxofficeonline.herokuapp.com/)
+> A full-featured online movie ticket booking web application built with **Django** and **MySQL**. Users can browse movies, select showtimes, choose seats, and book tickets — while cinema managers can manage shows, track earnings, and handle their dashboard.
 
-## Getting Started
+---
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## 📌 Table of Contents
 
-### Prerequisites
+- [About the Project](#-about-the-project)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Screenshots](#-screenshots)
+- [Database Models](#-database-models)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-What things you need to install the software and how to install them
+---
 
-* MySQL for database
-* Python 3
+## 📖 About the Project
 
-### Installing
-A step by step series of examples that tell you how to get a development env running
+**BoxOffice** is a web-based movie ticket booking system that allows two types of users:
 
-    - install requirements.txt
-    - create .env file and enter all details
-    SECRET_KEY = 
-    DB_NAME = 
-    DB_USER = 
-    DB_PASSWORD = 
-    DB_HOST = 
-    DB_PORT =
+- **Regular Users** – Browse movies, select showtimes, pick seats, book tickets, and manage their bookings.
+- **Cinema Managers** – Register their cinema, add movie shows, manage schedules, and track earnings via a dedicated dashboard.
 
-### Launch
-    python manage.py createsuperuser
-    python manage.py migrate
-    python manage.py runserver
-       
+The project focuses on a real-world booking workflow — from movie discovery all the way to ticket generation.
 
-## Built With
+---
 
-* [Bootstrap](https://getbootstrap.com/) - UI Components
-* [Django](https://www.djangoproject.com/) - Python web framework
-* [MySQL]() - Used for Database
+## 🚀 Features
 
-## License
+### 👤 For Users
+- 🔐 User Registration & Login
+- 🎥 Browse all available movies with posters, ratings, genres & trailers
+- 📅 View showtimes by cinema and date
+- 🪑 Interactive seat selection (see booked vs available seats)
+- 🎟️ Book tickets and get instant confirmation
+- 📋 View all past and upcoming bookings
+- 👤 Edit profile and change password
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+### 🏢 For Cinema Managers
+- 🏟️ Register cinema with name, city, address & phone
+- ➕ Add movie shows with time, date & ticket price
+- 📊 Dashboard to view all active shows by movie
+- 💰 Earnings page with total revenue from bookings
 
+### 🔧 Admin Panel
+- Manage movies, cinemas, shows, and bookings via Django Admin
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer       | Technology              |
+|-------------|-------------------------|
+| Backend     | Python, Django 2.2      |
+| Frontend    | HTML5, CSS3, JavaScript |
+| Database    | MySQL                   |
+| ORM         | Django ORM              |
+| Auth        | Django Built-in Auth    |
+| Deployment  | Gunicorn (Heroku-ready) |
+| Config      | python-decouple, dotenv |
+
+---
+
+## 📁 Project Structure
+
+```
+BoxOffice-movie-booking-system/
+│
+├── BoxOffice/               # Project settings & main URL config
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── accounts/                # User & Cinema Manager app
+│   ├── models.py            # Cinema, Movie, Shows, Bookings models
+│   ├── views.py             # Login, Register, Profile, Dashboard, Earnings
+│   └── urls.py
+│
+├── main/                    # Public-facing app
+│   ├── views.py             # Index, Movie detail, Seat selection, Booking
+│   └── urls.py
+│
+├── templates/               # HTML templates
+│   ├── base.html
+│   ├── index.html
+│   ├── movies.html
+│   ├── seat.html
+│   ├── booked.html
+│   ├── ticket.html
+│   ├── dashboard.html
+│   ├── earnings.html
+│   ├── bookings.html
+│   ├── profile.html
+│   ├── login.html
+│   ├── register.html
+│   └── register_cinema.html
+│
+├── static/                  # CSS styles and images
+│   ├── styles/
+│   └── images/
+│
+├── media/                   # Uploaded movie posters
+├── manage.py
+├── requirements.txt
+├── Procfile
+└── .gitignore
+```
+
+---
+
+## ⚙️ Getting Started
+
+### ✅ Prerequisites
+
+Make sure you have the following installed:
+- Python 3.x
+- MySQL Server
+- pip
+- virtualenv
+
+---
+
+### 📦 Installation
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/YOUR-USERNAME/BoxOffice-movie-booking-system.git
+cd BoxOffice-movie-booking-system
+```
+
+**2. Create and activate a virtual environment**
+```bash
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+# Mac/Linux
+source venv/bin/activate
+```
+
+**3. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**4. Set up the database**
+
+Create a MySQL database:
+```sql
+CREATE DATABASE boxoffice;
+```
+
+**5. Configure environment variables**
+
+Create a `.env` file in the root directory:
+```env
+SECRET_KEY=your-secret-key-here
+DEBUG=True
+DB_NAME=boxoffice
+DB_USER=your-mysql-username
+DB_PASSWORD=your-mysql-password
+DB_HOST=localhost
+DB_PORT=3306
+```
+
+**6. Update `settings.py`** with your database config (if not using `.env`):
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'boxoffice',
+        'USER': 'your-username',
+        'PASSWORD': 'your-password',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+```
+
+**7. Run migrations**
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+**8. Create a superuser (Admin)**
+```bash
+python manage.py createsuperuser
+```
+
+**9. Run the development server**
+```bash
+python manage.py runserver
+```
+
+Visit: **http://127.0.0.1:8000**
+
+---
+
+## 🗃️ Database Models
+
+### `Movie`
+| Field          | Type        | Description              |
+|----------------|-------------|--------------------------|
+| movie_name     | CharField   | Name of the movie        |
+| movie_des      | TextField   | Movie description        |
+| movie_rating   | Decimal     | Rating out of 10         |
+| movie_genre    | CharField   | Genre(s)                 |
+| movie_duration | CharField   | Duration (e.g. 2hr 30min)|
+| movie_poster   | ImageField  | Poster image             |
+| movie_trailer  | CharField   | Trailer URL              |
+
+### `Cinema`
+| Field        | Type          | Description              |
+|--------------|---------------|--------------------------|
+| cinema_name  | CharField     | Name of the cinema       |
+| city         | CharField     | City of the cinema       |
+| address      | CharField     | Full address             |
+| phoneno      | CharField     | Contact number           |
+| user         | OneToOneField | Linked to Django User    |
+
+### `Shows`
+| Field   | Type        | Description                  |
+|---------|-------------|------------------------------|
+| cinema  | ForeignKey  | Linked cinema                |
+| movie   | ForeignKey  | Linked movie                 |
+| time    | CharField   | Show time                    |
+| date    | CharField   | Show date                    |
+| price   | IntegerField| Ticket price                 |
+
+### `Bookings`
+| Field  | Type       | Description                      |
+|--------|------------|----------------------------------|
+| user   | ForeignKey | Linked user                      |
+| shows  | ForeignKey | Linked show                      |
+| useat  | CharField  | Comma-separated booked seat IDs  |
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature-name`
+3. Commit your changes: `git commit -m "Add your feature"`
+4. Push to the branch: `git push origin feature/your-feature-name`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+Made with ❤️ by **[Your Name]**
+
+- GitHub: [@your-username](https://github.com/your-username)
+- LinkedIn: [your-linkedin](https://linkedin.com/in/your-linkedin)
+
+---
+
+⭐ **If you found this project helpful, please give it a star!**
