@@ -258,17 +258,4 @@ Contributions are welcome! To contribute:
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👨‍💻 Author
-
-Made with ❤️ by **[Your Name]**
-
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [your-linkedin](https://linkedin.com/in/your-linkedin)
-
----
-
-⭐ **If you found this project helpful, please give it a star!**
+This project is educational purpouse only.
